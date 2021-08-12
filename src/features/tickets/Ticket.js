@@ -1,3 +1,4 @@
+import "./Ticket.css"
 export const Ticket = (props) => {
     const { price, carrier, segments } = props.data;
     const { getDuration, getStartEnd, getStopsTitle } = props;
@@ -9,31 +10,31 @@ export const Ticket = (props) => {
             </div>
             <div className="first-segment">
                 <div className="route">
-                    <div>{`${segments[0].origin} - ${segments[0].destination}`}</div>
-                    <div>{getStartEnd(segments[0].date, +segments[0].duration)}</div>
+                    <div className="subtitle">{`${segments[0].origin} - ${segments[0].destination}`}</div>
+                    <div className="info">{getStartEnd(segments[0].date, +segments[0].duration)}</div>
   
                 </div>
                 <div className="length">
-                    <div>В ПУТИ</div>
-                    <div>{getDuration(+segments[0].duration)}</div>
+                    <div className="subtitle">В ПУТИ</div>
+                    <div className="info">{getDuration(+segments[0].duration)}</div>
                 </div>
                 <div className="stops">
-                    <div>{getStopsTitle(segments[0].stops)}</div>
-                    <div>{segments[0].stops.join(", ")}</div>
+                    <div className="subtitle">{getStopsTitle(segments[0].stops)}</div>
+                    <div className="info">{segments[0].stops.join(", ")}</div>
                 </div>
             </div>
             <div className="second-segment">
                 <div className="route">
-                    <div>{`${segments[1].origin} - ${segments[1].destination}`}</div>
-                    <div>{getStartEnd(segments[1].date, +segments[1].duration)}</div>
+                    <div className="subtitle">{`${segments[1].origin} - ${segments[1].destination}`}</div>
+                    <div className="info">{getStartEnd(segments[1].date, +segments[1].duration)}</div>
                 </div>
                 <div className="length">
-                    <div>В ПУТИ</div>
-                    <div>{getDuration(+segments[1].duration)}</div>
+                    <div className="subtitle">В ПУТИ</div>
+                    <div className="info">{getDuration(+segments[1].duration)}</div>
                 </div>
                 <div className="stops">
-                    <div>{getStopsTitle(segments[1].stops)}</div>
-                    <div>{segments[1].stops.join(", ")}</div>
+                    <div className="subtitle">{getStopsTitle(segments[1].stops)}</div>
+                    <div className="info">{segments[1].stops.join(", ")}</div>
                 </div>
             </div>
         </div>)
