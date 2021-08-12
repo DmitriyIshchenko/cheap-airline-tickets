@@ -18,7 +18,18 @@ export const ticketsSlice = createSlice({
     name: "tickets",
     initialState,
     reducers: {
-
+        sortByPrice: (state) => {
+            state.tickets = state.tickets.sort((a,b)=>(a.price - b.price));
+        },
+        sortByTime: (state) =>{
+            state.tickets = state.tickets.sort((a,b)=>{
+                let first = a.segments[0].duration+a.segments[1].duration;
+                let second = b.segments[0].duration+b.segments[1].duration;
+                if(first>second) return 1;
+                if(first<second) return -1;
+                return 0;
+            })
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchTicketsAsync.fulfilled, (state,action)=>{
@@ -27,5 +38,5 @@ export const ticketsSlice = createSlice({
         })
     }
 })
-
+export const {sortByPrice,sortByTime} = ticketsSlice.actions; 
 export default ticketsSlice.reducer;

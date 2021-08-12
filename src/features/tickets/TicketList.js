@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchTicketsAsync } from './ticketsSlice';
+import { fetchTicketsAsync, sortByPrice, sortByTime } from './ticketsSlice';
 import { Ticket } from './Ticket';
 import moment from 'moment';
 
@@ -32,8 +32,14 @@ export function TicketList() {
             return "1 ПЕРЕСАДКА"
         } else return stops.length + " ПЕРЕСАДКИ"
     }
+
     return (
         <div>
+            <div>
+                <div onClick={()=>dispatch(sortByPrice())}>САМЫЙ ДЕШЕВЫЙ</div>
+                <div onClick={()=>dispatch(sortByTime())}>САМЫЙ БЫСТРЫЙ</div>
+            </div>
+
             {tickets.slice(0, 5).map(ticket => {
                 return <Ticket
                     data={ticket}
