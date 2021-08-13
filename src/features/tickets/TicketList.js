@@ -62,7 +62,8 @@ export function TicketList() {
 
             </div>
             {
-                tickets.filter(item => filtersObj.includes(item.segments[0].stops.length))
+                tickets.filter(item => filtersObj.includes(item.segments[0].stops.length) 
+                && filtersObj.includes(item.segments[1].stops.length))
                     .slice(0, 5).map(ticket => {
                         return <Ticket
                             data={ticket}
