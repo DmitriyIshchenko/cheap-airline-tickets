@@ -8,6 +8,8 @@ export function TicketList() {
     const dispatch = useDispatch();
     const status = useSelector((state) => state.tickets.status);
     const tickets = useSelector((state) => state.tickets.tickets);
+    let filtersObj = useSelector((state) => state.filters.filters);
+    filtersObj = Object.keys(filtersObj).filter(item => filtersObj[item]).map(item => +item);
     useEffect(() => {
         if (status === "idle") dispatch(fetchTicketsAsync())
     });
@@ -26,7 +28,7 @@ export function TicketList() {
     };
 
     const getStopsTitle = (stops) => {
-        if (stops.length===0) {
+        if (stops.length === 0) {
             return "БЕЗ ПЕРЕСАДОК"
         } else if (stops.length === 1) {
             return "1 ПЕРЕСАДКА"
@@ -35,18 +37,39 @@ export function TicketList() {
 
     return (
         <div>
-            <div>
-                <div onClick={()=>dispatch(sortByPrice())}>САМЫЙ ДЕШЕВЫЙ</div>
-                <div onClick={()=>dispatch(sortByTime())}>САМЫЙ БЫСТРЫЙ</div>
+            <div id="sort-container">
+                <ul>
+                    <li>
+                        <input
+                            className="sort-input"
+                            type="radio"
+                            name="sort"
+                            id="sort-by-price"
+                            value="price"
+                            onChange={() => dispatch(sortByPrice())} />
+                        <label for="sort-by-price" className="sort-label">САМЫЙ ДЕШЕВЫЙ</label>
+                    </li>
+                    <li>
+                        <input
+                            className="sort-input"
+                            type="radio"
+                            name="sort"
+                            id="sort-by-time"
+                            value="time"
+                            onChange={() => dispatch(sortByTime())} />
+                        <label for="sort-by-time" className="sort-label">САМЫЙ БЫСТРЫЙ</label></li>
+                </ul>
             </div>
-
-            {tickets.slice(0, 5).map(ticket => {
-                return <Ticket
-                    data={ticket}
-                    getDuration={getDuration}
-                    getStartEnd={getStartEnd}
-                    getStopsTitle={getStopsTitle} />
-            })}
+            {
+                tickets.filter(item => filtersObj.includes(item.segments[0].stops.length))
+                    .slice(0, 5).map(ticket => {
+                        return <Ticket
+                            data={ticket}
+                            getDuration={getDuration}
+                            getStartEnd={getStartEnd}
+                            getStopsTitle={getStopsTitle} />
+                    })
+            }
         </div>)
 }
 
