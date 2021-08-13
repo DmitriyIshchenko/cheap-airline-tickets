@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux"
 import { toggleFilter } from "./filtersSlice"
+import "./Filters.css"
 export function Filters() {
     const dispatch = useDispatch();
-    const [checkedState, setCheckedState] = useState([true,true,false,false]);
+    const [checkedState, setCheckedState] = useState([true, true, false, false]);
     const stops = ["Без пересадок", "1 пересадка", "2 пересадки", "3 пересадки"];
     const handleOnChange = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
@@ -14,18 +15,20 @@ export function Filters() {
     }
     return (
         <div id="filters-container">
+            <p id="filters-title">КОЛИЧЕСТВО ПЕРЕСАДОК</p>
             <ul>
                 {stops.map((item, index) => {
                     return (
                         <li key={index}>
-                            <div className="filters-item">
+                            <div className="container">
                                 <input
+                                    className="checkbox"
                                     type="checkbox"
                                     name={"filter-" + index}
                                     checked={checkedState[index]}
                                     onChange={() => handleOnChange(index)}
                                 />
-                                <label for={"filter-" + index}>{item}</label>
+                                <label className="filters-label" for={"filter-" + index}>{item}</label>
                             </div>
                         </li>
                     )
