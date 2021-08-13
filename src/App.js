@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
-import { Tickets} from "./features/tickets/Tickets"
+import { Filters } from './features/tickets/Filters';
+import { TicketList} from "./features/tickets/TicketList"
 function App() {
   return (
     <div className="App">
-     <Tickets />
+      <Filters />
+     <TicketList />
     </div>
   );
 }
