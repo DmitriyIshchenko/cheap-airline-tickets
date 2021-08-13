@@ -36,29 +36,30 @@ export function TicketList() {
     }
 
     return (
-        <div>
+        <div id="list-container">
             <div id="sort-container">
-                <ul>
-                    <li>
-                        <input
-                            className="sort-input"
-                            type="radio"
-                            name="sort"
-                            id="sort-by-price"
-                            value="price"
-                            onChange={() => dispatch(sortByPrice())} />
-                        <label for="sort-by-price" className="sort-label">САМЫЙ ДЕШЕВЫЙ</label>
-                    </li>
-                    <li>
-                        <input
-                            className="sort-input"
-                            type="radio"
-                            name="sort"
-                            id="sort-by-time"
-                            value="time"
-                            onChange={() => dispatch(sortByTime())} />
-                        <label for="sort-by-time" className="sort-label">САМЫЙ БЫСТРЫЙ</label></li>
-                </ul>
+                <div className="sort-div">
+                    <input
+                        className="sort-input"
+                        type="radio"
+                        name="sort"
+                        id="sort-by-price"
+                        value="price"
+                        onChange={() => dispatch(sortByPrice())} />
+                    <label for="sort-by-price" className="sort-label" id="price-label">САМЫЙ ДЕШЕВЫЙ</label>
+                </div>
+                <div className="sort-div">
+                    <input
+                        className="sort-input"
+                        type="radio"
+                        name="sort"
+                        id="sort-by-time"
+                        value="time"
+                        onChange={() => dispatch(sortByTime())} />
+                    <label for="sort-by-time" className="sort-label" id="time-label">САМЫЙ БЫСТРЫЙ</label>
+                </div>
+
+
             </div>
             {
                 tickets.filter(item => filtersObj.includes(item.segments[0].stops.length))
