@@ -1,0 +1,34 @@
+#filters-container{
+    width: 232px;
+    height: 252px;
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    color: #4A4A4A;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    box-sizing: border-box; 
+    padding-left:20px;
+}
+#filters-title{
+    font-size: 12px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    margin:0;
+}
+ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+}
+li{
+    height: 40px;
+}
+.filters-label{
+    margin-left: 1rem;
+}
