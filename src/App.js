@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
-import { Filters } from './features/tickets/Filters';
-import { TicketList} from "./features/tickets/TicketList"
+import TicketsList from './features/tickets/TicketsList';
+import { SortContols, FiltersContorls } from './features/tickets/Filters';
+
 function App() {
   return (
     <div className="App">
-      <Filters />
-     <TicketList />
+      <FiltersContorls />
+      <div>
+        <SortContols />
+        <TicketsList />
+      </div>
     </div>
   );
 }
