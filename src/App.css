@@ -1,45 +1,4 @@
-.App{
-  margin: auto;
-  width: 960px;
-  height: 1350px;
-  display:flex;
-  justify-content: center;
-}
-#list-container{
-  width: 542px;
-}
-.sort-input{
-  display: none;
-}
-.sort-input:checked +.sort-label{
-  background-color: #2196F3;
-  color: white;
-}
-#sort-container{
+.App {
   display: flex;
-  margin: 20px;
-  height: 50px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.sort-div{
-  width: 50%;
-  display: flex;
-}
-.sort-label{
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-  font-weight: 600;
-  color: #4A4A4A;
-}
-#price-label{
-  border-radius: 5px 0px 0px 5px;
-}
-#time-label{
-  border-radius: 0px 5px 5px 0px;
+  height: 101vh;
 }
