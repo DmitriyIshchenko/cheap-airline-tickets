@@ -1,64 +1,72 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchTicketsAsync } from "./ticketsAPI";
+import { fetchTickets } from "./ticketsAPI";
 
 const initialState = {
-    items: [],
-    filteredItems: [],
-    sortedBy: "duration",
-    stopsFilter: [],
-    status: "idle",
-    error: null
+  items: [],
+  sortedBy: "duration",
+  stopsFilter: {
+    0: true,
+    1: true,
+    2: true,
+    3: true
+  },
+  status: "idle",
+  error: null
 }
 
-export const fetchTickets = createAsyncThunk("tickets/fetchTickets", async () => {
-    const response = await fetchTicketsAsync();
-    return response;
+export const fetchTicketsAsync = createAsyncThunk("tickets/fetchTickets", async () => {
+  const response = await fetchTickets();
+  return response;
 })
 
 const getTotalDuration = (ticket) => {
-    return ticket.segments.reduce((total, segment) => total + segment.duration, 0);
+  return ticket.segments.reduce((total, segment) => total + segment.duration, 0);
 }
 
 const ticketsSlice = createSlice({
-    name: "tickets",
-    initialState,
-    reducers: {
-        setSortBy: (state, action) => {
-            state.sortedBy = action.payload;
-        },
-        setStopsFilter: (state, action) => {
-            state.stopsFilter = action.payload;
-        },
-        filterTickets: (state) => {
-            state.filteredItems = state.items.filter(ticket => {
-                return state.stopsFilter.includes(ticket.segments[0].stops.length)
-                    &&
-                    state.stopsFilter.includes(ticket.segments[1].stops.length)
-            })
-            if (state.sortedBy === "price") {
-                state.filteredItems = state.filteredItems.sort((a, b) => a.price - b.price)
-            }
-            if (state.sortedBy === "duration") {
-                state.filteredItems = state.filteredItems.sort((a, b) => getTotalDuration(a) - getTotalDuration(b))
-            }
-        }
+  name: "tickets",
+  initialState,
+  reducers: {
+    setSortBy: (state, action) => {
+      state.sortedBy = action.payload;
     },
-    extraReducers(builder) {
-        builder
-            .addCase(fetchTickets.pending, (state) => {
-                state.status = "loading";
-            })
-            .addCase(fetchTickets.fulfilled, (state, action) => {
-                state.status = "succeeded";
-                state.items = state.items.concat(action.payload)
-                state.filteredItems = [...state.items].sort((a, b) => getTotalDuration(a) - getTotalDuration(b));
-            })
-            .addCase(fetchTickets.rejected, (state, action) => {
-                state.status = "failed";
-                state.error = action.error.message;
-            })
-    }
+    setStopsFilter: (state, action) => {
+      state.stopsFilter = action.payload;
+    },
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchTicketsAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchTicketsAsync.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.items = state.items.concat(action.payload);
+      })
+      .addCase(fetchTicketsAsync.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+  }
 })
+
+export const selectFilteredItems = (state) => {
+  let filteredItems = [...state.items];
+  const stopsFilter = Object.keys(state.stopsFilter).filter(key => state.stopsFilter[key]).map(item => +item);
+  if (filteredItems.length) {
+    filteredItems = filteredItems.filter(item => {
+      return stopsFilter.includes(item.segments[0].stops.length) && stopsFilter.includes(item.segments[1].stops.length)
+    });
+
+    filteredItems.sort((a, b) => {
+      if (state.sortedBy === "price") {
+        return a.price - b.price;
+      } else return getTotalDuration(a) - getTotalDuration(b);
+    });
+  }
+
+  return filteredItems;
+}
 
 export const { setSortBy, setStopsFilter, filterTickets } = ticketsSlice.actions;
 export default ticketsSlice.reducer;
