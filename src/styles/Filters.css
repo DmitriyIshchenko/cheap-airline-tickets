@@ -1,140 +1,128 @@
-:root {
-    --primary-color: #2196F3;
-    --subtitle-color: #A0B0B9;
-    --secondary-color: #F1FCFF;
-    --border-color: #E5E5E5;
-    --text-color: #4A4A4A;
-    --semibold: 600;
-    --shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
 .radio {
-    display: none;
+  display: none;
 }
 
 .sort-container {
-    width: 502px;
-    height: 50px;
-    display: flex;
-    margin: 20px;
-    box-shadow: var(--shadow);
-    border-radius: 5px;
+  width: 502px;
+  height: 50px;
+  display: flex;
+  margin: 20px;
+  box-shadow: var(--shadow);
+  border-radius: 5px;
 }
 
 .sort {
-    font-size: 12px;
-    font-weight: var(--semibold);
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    border: 1px solid var(--border-color);
-    letter-spacing: 0.05rem;
+  font-size: 12px;
+  font-weight: var(--semibold);
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border: 1px solid var(--border-color);
+  letter-spacing: 0.05rem;
 }
 
 .sort-left {
-    border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
 }
 
 .sort-right {
-    border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
 }
 
 .sort-selected {
-    background-color: var(--primary-color);
-    color: white;
-    border: 0px;
+  background-color: var(--primary-color);
+  color: white;
+  border: 0px;
 }
 
 .stops-container {
-    width: 232px;
-    height: 252px;
-    margin: 20px 0 0 20px;
-    background: white;
-    border-radius: 5px;
-    box-shadow: var(--shadow);
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    color: var(--text-color);
-    position: sticky;
-    top: 0;
+  width: 232px;
+  height: 252px;
+  margin: 20px 0 0 20px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
 }
 
 .stops-container-title {
-    margin: 20px 0 0 20px;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: var(--semibold);
-    letter-spacing: 0.05rem;
+  margin: 20px 0 0 20px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: var(--semibold);
+  letter-spacing: 0.05rem;
 }
 
 ul {
-    padding: 0;
-    margin: 10px 0 10px 0;
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
+  padding: 0;
+  margin: 10px 0 10px 0;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
 }
 
 li {
-    list-style: none;
-    font-size: 13px;
-    flex-grow: 1;
+  list-style: none;
+  font-size: 13px;
+  flex-grow: 1;
 }
 
 .checkbox-container {
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding-left: 50px;
-    height: 100%;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 50px;
+  height: 100%;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .checkbox-container input {
-    display: none;
+  display: none;
 }
 
 .checkmark {
-    display: block;
-    position: absolute;
-    top: inherit;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    margin: 0 10px 0 20px;
-    border-radius: 2px;
-    border: 1px solid var(--primary-color);
+  display: block;
+  position: absolute;
+  top: inherit;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  margin: 0 10px 0 20px;
+  border-radius: 2px;
+  border: 1px solid var(--primary-color);
 }
 
 .checkbox-container:hover {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
+  content: "";
+  position: absolute;
+  display: none;
 }
 
 .checkbox-container input:checked~.checkmark:after {
-    display: block;
+  display: block;
 }
 
 .checkbox-container .checkmark:after {
-    left: 7px;
-    top: 2px;
-    width: 5px;
-    height: 10px;
-    border: solid #2196F3;
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+  left: 7px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid #2196F3;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
