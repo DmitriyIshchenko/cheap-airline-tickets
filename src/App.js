@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 import TicketsList from './features/tickets/TicketsList';
-import { SortContols, FiltersContorls } from './features/tickets/Filters';
+import SortContols from './features/tickets/SortControls';
+import FiltersControls from './features/tickets/FiltersControls';
 
 function App() {
   return (
     <div className="App">
-      <FiltersContorls />
+      <FiltersControls />
       <div>
         <SortContols />
         <TicketsList />
